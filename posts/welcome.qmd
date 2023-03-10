@@ -9,11 +9,15 @@ I have started using `Quarto` in December 2022. In this blog, I mainly share cod
 
 ## About me
 
+::: {layout="[[70, 30], [100]]"}
+
 I am a postdoctoral research fellow and PI of [`A national longitudinal study of Muslim diversity and flourishing`](https://usman-afzali.github.io/nzavs-flourishing/), based at University of Canterbury in New Zealand.
-
 Psychology fascinates me a great deal and my lifelong goal is to conduct good science and contribute to open science.
-
 I am experienced in teaching statistics and research methods and my immediate goal is to become a permanent (tenure-track) `lecturer in psychology`.
+
+![Usman Afzali, PhD](ua.jpeg)
+
+:::
 
 ## Fields of Research
 
@@ -38,4 +42,4 @@ I am experienced in teaching statistics and research methods and my immediate go
 
 For more information, please check my [website](http://www.usmanafzali.com).
 
-![Usman Afzali, PhD](ua.jpeg)
+
