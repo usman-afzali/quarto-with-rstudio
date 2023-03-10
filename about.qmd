@@ -12,7 +12,7 @@ about:
       href: https://www.linkedin.com/in/usman-afzali/
     - icon: github
       text: Github
-      href: https://github.com/usman-afzali/quarto-and-rstudio
+      href: https://github.com/usman-afzali/quarto-with-rstudio
 ---
 
 About this blog
