@@ -8,7 +8,7 @@ website:
     right:
       - about.qmd
       - icon: github
-        href: https://github.com/https://github.com/usman-afzali/quarto-and-rstudio
+        href: https://github.com/usman-afzali/quarto-and-rstudio
       - icon: twitter
         href: https://twitter.com/UsmanAfzali
 format:
