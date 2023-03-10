@@ -1,19 +1,18 @@
 ---
 title: "About"
-image: profile.jpg
+image: quarto.jpg
 about:
   template: jolla
   links:
     - icon: twitter
       text: Twitter
-      href: https://twitter.com
+      href: https://twitter.com/UsmanAfzali
     - icon: linkedin
       text: LinkedIn
-      href: https://linkedin.com
+      href: https://www.linkedin.com/in/usman-afzali/
     - icon: github
       text: Github
-      href: https://github.com
-
+      href: https://github.com/usman-afzali/quarto-and-rstudio
 ---
 
 About this blog
