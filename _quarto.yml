@@ -3,14 +3,14 @@ project:
   output-dir: docs
 
 website:
-  title: "quarto-and-rstudio"
+  title: "Quarto with RStudio"
   navbar:
     right:
       - about.qmd
       - icon: github
-        href: https://github.com/
+        href: https://github.com/https://github.com/usman-afzali/quarto-and-rstudio
       - icon: twitter
-        href: https://twitter.com
+        href: https://twitter.com/UsmanAfzali
 format:
   html:
     theme: cosmo
