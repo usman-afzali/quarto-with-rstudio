@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Usman Afzali">
+<meta name="dcterms.date" content="2022-12-20">
+
+<title>Quarto with RStudio - Git and GitHub with RStudio On Mac</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Quarto with RStudio</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/usman-afzali/quarto-and-rstudio"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/UsmanAfzali"><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Git and GitHub with RStudio On Mac</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Git</div>
+                <div class="quarto-category">GitHub</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Usman Afzali </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">December 20, 2022</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>There is a need to bring all resources that relate to Git and GitHub together because some of the available videos and links are outdated. In addition, online resources are either too long or they only address a small part of the bigger picture.</p>
+<p><em>(Please let me know if you notice any mistakes.)</em></p>
+<section id="installing-git-on-to-mac" class="level4">
+<h4 class="anchored" data-anchor-id="installing-git-on-to-mac">Installing Git on to Mac</h4>
+<p>Open Mac Terminal and install <a href="https://brew.sh">Homebrew</a> by:</p>
+<ol type="1">
+<li>Copy the “Install Homebrew” link from the website:</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="homebrew.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure showing a screenshot of homebrew website</figcaption><p></p>
+</figure>
+</div>
+<ol start="2" type="1">
+<li>Paste the link into the Mac terminal and press enter.</li>
+<li>To ensure that homebrew is installed, type “brew –version”.</li>
+<li>Install git by typing “brew install git”.</li>
+<li>Check installation by typing “git –version”. It will show you the latest (current) version.</li>
+<li>If you ever wanted to upgrade git, simply follow steps 4 and 5, and it will update and overwrite the previous version.</li>
+</ol>
+<p>Now you can close the Mac terminal and conduct the rest of processing from the RStudio terminal.</p>
+<p>Note. If you need help with creating an SSH key, visit here: <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh">Connecting to GitHub with SSH</a>.</p>
+</section>
+<section id="first-create-an-rstudio-project-on-your-computer" class="level4">
+<h4 class="anchored" data-anchor-id="first-create-an-rstudio-project-on-your-computer">First, create an RStudio project on your computer</h4>
+<p>Once created, then access it from the RStudio terminal using the following command - considering the folder is named Git-GitHub-2022, for example, on your Mac’s Desktop:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/Desktop/Git-GitHub-2022</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In RStudio, create a markdown document and name it “README.md”.</p>
+</section>
+<section id="create-a-repo-on-github" class="level4">
+<h4 class="anchored" data-anchor-id="create-a-repo-on-github">Create a repo on GitHub</h4>
+<p>It can be either public or private depending on your preference. Once created, it will show the following screen:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="githubscreen.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure showing GitHub screen after repository creation</figcaption><p></p>
+</figure>
+</div>
+<p>Run the first line of the code - and the current README.md document will be replaced/overwritten in the directory (it only happens because I am adding these instructions and setting up the repo at the same time). Make sure you save the current markdown document (README.md) before running the first line of the code.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Git-GitHub-Mac-2022"</span> <span class="op">&gt;&gt;</span> README.md</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add README.md</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"first commit"</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-M</span> main</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin git@github.com:usman-afzali/Git-GitHub-Mac-2022.git</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then run the rest of the lines.</p>
+<p>You will see the new README.md file has been added your GitHub environment/repository (repo). Now click the Git dialogue box on RStudio (see below) and tick all check boxes.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="git-dialogue-RStudio.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure showing Git dialogue box on RStudio</figcaption><p></p>
+</figure>
+</div>
+<p>Click commit, type a commit message, click commit, close, and push. Refresh the GitHub screen and note that the new files have been added to the remote (GitHub) repository.</p>
+</section>
+<section id="git-clone" class="level3">
+<h3 class="anchored" data-anchor-id="git-clone">Git clone</h3>
+<p>Used in case you lose access to the repo on the local machine. First, cd where you want the cloned repository to appear. Then follow the command below (e.g., if you are cloning the current repo).</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:usman-afzali/Git-GitHub-Mac-2022.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="set-up-gitignore" class="level3">
+<h3 class="anchored" data-anchor-id="set-up-gitignore">Set up gitignore</h3>
+<p>Type names of all files inside the current directory that you don’t want to be pushed to the GitHub repo. They can be history files (that are already in gitignore), sensitive files, or maybe large files. In addition, add .DS_Store to gitingore too. The soon you change a file (any file), it will show up in the Git terminal on RStudio. And as the previous section, we add a commit message and push it to the remote GitHub repo.</p>
+</section>
+<section id="git-branching-on-local-repo" class="level3">
+<h3 class="anchored" data-anchor-id="git-branching-on-local-repo">Git branching on local repo</h3>
+<p>When git is created as above, it will only have a “main” branch. You can see this with the command:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>All git processing, until now, happens in the “main” branch.</p>
+<p>A new branch (e.g., called “Rcode”) can be added onto the local git repo:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch Rcode</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now, the “git branch” command will show you both branches, with the active branch showing a * before its name. To use the new branch, use:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout Rcode</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now, you can see that the active branch is “Rcode”. Any additions at this stage will be within the Rcode branch. Create a new file inside the new branch “sample-code-cars.R”. Once you commit, the newly created sample-code-cars.R file will not be pushed into GitHub remote repo. The file disappears when you switch branch.</p>
+<p>To bring the new file into the main branch on remote repo, merge the “Rcode” branch into the main branch (you should be in the main branch to do so):</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge Rcode</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This is known as fast-forward merge. If you bring any new changes to the “Rcode” branch or sample-code-cars.R file on this branch, you need to merge again. These changes will not automatically merge into the main branch.</p>
+</section>
+<section id="deleting-and-renaming-a-branch" class="level3">
+<h3 class="anchored" data-anchor-id="deleting-and-renaming-a-branch">Deleting and renaming a branch</h3>
+<p>Need to be outside a branch first. Then use:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-d</span> <span class="op">&lt;</span>branch name<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To rename, be inside that very branch. Then use:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-m</span> <span class="op">&lt;</span>branch name<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="using-git-outside-rstudio" class="level3">
+<h3 class="anchored" data-anchor-id="using-git-outside-rstudio">Using Git outside RStudio</h3>
+<p>If needed, you can use git outside RStudio too, using Mac terminal. For example, you want to use git on your Desktop for version control of a file. Opening terminal, you can access Desktop with</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/Desktop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Create a git repository:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> git-repo</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To enter new repo:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/Desktop/git-repo</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you check git status (below) in this directory, you will see the following message: “fatal: not a git repository (or any of the parent directories): .git”</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you type “ls” in the terminal and hit return, you will see no content because it is an empty folder.</p>
+<p>Use the following command to initialize git:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now that git has been initialized, you can see the hidden files within this folder by using:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-a</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Get inside .git folder</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/Desktop/git-repo/.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then command ls and you will see all items inside.</p>
+<p>To get out of each directory, use:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>From .git, it will take you two such steps (commands) to get back to the Desktop.</p>
+<p>If at any stage, you want to know where you currently are located, use the following command and it will give you the directory address.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For instance, if you were in git-repo that you previously created, it will show you the following:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="terminalsc.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">terminal screenshot</figcaption><p></p>
+</figure>
+</div>
+<p>If needed to show <code>hidden</code> files, the following commands, one after another, are to be used. Change <code>yes</code> to <code>no</code> to hide them again.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">defaults</span> write com.apple.Finder AppleShowAllFiles yes</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">killall</span> Finder</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="extra" class="level3">
+<h3 class="anchored" data-anchor-id="extra">Extra</h3>
+<ol type="1">
+<li>Use “clear” to clean the terminal.</li>
+<li>If you added a new file on GitHub, you can use the “pull” command from git dialogue box to bring that file to your local machine repository.</li>
+<li>A more sophisticated way - before the pull command - will be to use git fetch - that helps you see what the new additions are before pulling them to your local repo. Use:</li>
+</ol>
+<div class="sourceCode" id="cb20"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> fetch origin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>…followed by git status. And you will see that the main branch is behind by 1 commit (related to the newly added file). The you can use the following to access the remote directory and see the newly added file(s):</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout origin/main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>It will show you the file name. You can then access/see the new file in the local repo. The following command shows what is inside the new file:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> <span class="op">&lt;</span>filename.extension<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Once you are happy with the new file, you can checkout/switch to the local repo (main) and use pull to permanently bring the new file(s) in to the local repo. Besides the git dialogue box, you can also use the following command to pull the newly added file.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull origin main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="4" type="1">
+<li>Use “git log” at any stage to see all of the commits.</li>
+</ol>
+</section>
+<section id="adding-a-branch-on-github-remote-repo" class="level3">
+<h3 class="anchored" data-anchor-id="adding-a-branch-on-github-remote-repo">Adding a branch on GitHub (remote repo)</h3>
+<p>A branch can be created on GitHub by typing a name in the window shown below after clicking on “main”: <img src="GitHub-branch.png" class="img-fluid" alt="Fig new branch on GitHub"></p>
+<p>For example, the new branch is called “pycode” within which a python file can be created, named “experimental.py”. When you fetch git, it tells you that we have a new branch: <img src="branch-name.png" class="img-fluid" alt="Fig showing new branch name"></p>
+<p>Switch to the new remote repo:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout origin/pycode</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>… And access contents of the new file:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> experimental.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Finally, merge the new file as explained before. But you need to switch to the main branch first.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout main</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge origin/pycode</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Once merged, there is no need to pull the file because now the new file has been merged into the local repo.</p>
+</section>
+<section id="references-and-further-info" class="level3">
+<h3 class="anchored" data-anchor-id="references-and-further-info">References and further info:</h3>
+<ol type="1">
+<li><a href="https://www.youtube.com/watch?v=hMEyBtsuAJE">Install Git on MacOS (Macbook M1, M1 Max, M1 Pro, M2) and push project into Github | Homebrew</a> - YouTube video</li>
+<li>See <a href="https://github.com/ctesta01/fibonacci">Fibonacci numbers with Git and GitHub</a> - a GitHub repo. The video for this repo tutorial is available on YouTube: <a href="https://www.youtube.com/watch?v=u4LIpYC0Yaw">Intro to Git and GitHub with R and RStudio</a>. The following references are also taken from the video above, if interested: 2a. <a href="https://happygitwithr.com">Happy Git and GitHub for the useR</a> - Website 2b. <a href="https://rogerdudler.github.io/git-guide/">Git - The Simple Guide</a> - Website 2c. <a href="https://git-scm.com/book/en/v2">Pro - Git</a> - Website/Book 2d. <a href="https://ohshitgit.com">Oh Shit, Git!?!</a> - Website</li>
+<li><a href="https://www.udemy.com/course/git-n-github-complete-guide/">Git and GitHub Complete Guide</a> - Free Udemy coures</li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
