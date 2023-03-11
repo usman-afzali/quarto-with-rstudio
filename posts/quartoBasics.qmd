@@ -1,0 +1,82 @@
+---
+title: "Basices of Quarto documentation"
+author: "Usman Afzali"
+date: "2022-12-22"
+output: 
+  html_document: 
+    theme: cerulean
+    highlight: espresso
+    toc: yes
+    number_sections: yes
+---
+
+# Heading 1
+
+## Heading 2
+
+### Heading 3
+
+#### Heading 4
+
+##### Heading 5
+
+###### Heading 6
+
+*Italic*
+
+**Bold**
+
+***Bold Italic***
+
+1.  List item 1
+2.  List item 2
+
+-   bullet 1
+-   bullet 2
+
+Link: [My website](https://www.usmanafzali.com)
+
+```{r}
+answer <- 2 + 4
+answer
+my_data <- cars
+my_data
+```
+
+To run each `line`, say for testing, use `command + return`.
+
+# Including Plots
+
+```{r}
+plot(my_data$speed ~ my_data$dist)
+```
+
+You can also embed plots, for example: Here, `echo=FALSE` means that the code will not be shown.
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r include=FALSE}
+library(viridis)
+```
+
+# Viridis colours
+
+```{r}
+image(volcano, col = viridis(200, option = "A"))
+```
+
+# References
+
+1.  [Git and GitHub with RStudio On Mac - 2022](https://github.com/usman-afzali/Git-GitHub-Mac-2022)
+
+2.  [R Markdown TUTORIAL \| A powerful tool for LEARNING R (IN 45 MINUTES)](https://youtu.be/K418swtFnik)
+
+# Session Info:
+
+```{r}
+sessionInfo()
+```

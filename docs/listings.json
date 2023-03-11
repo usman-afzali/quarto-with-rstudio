@@ -2,8 +2,9 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/grading.html",
+      "/posts/grading/grading.html",
       "/posts/sfssa.html",
+      "/posts/quartoBasics.html",
       "/posts/git/git.html",
       "/posts/welcome.html"
     ]

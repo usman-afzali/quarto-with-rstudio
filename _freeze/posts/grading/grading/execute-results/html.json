@@ -1,0 +1,14 @@
+{
+  "hash": "aa37552d9ebcb0349b93bdf070f7b23e",
+  "result": {
+    "markdown": "---\ntitle: \"Grading\"\nauthor: \"Usman Afzali\"\ndate: \"2023-03-11\"\ncategories: [stats, grading]\n---\n\n\n## Code for gradebook processing\n\n\n::: {.cell}\n\n```{.r .cell-code}\ndf <- readxl::read_xlsx(\"Grades.xlsx\")\n```\n:::\n\n\nPick the needed columns only.\n\n\n::: {.cell}\n\n```{.r .cell-code}\ndf <- df[,c(1,2,20,27,34,36,40,42,44,45)]\n```\n:::\n\n\nApply weights\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(dplyr)\n```\n\n::: {.cell-output .cell-output-stderr}\n```\n\nAttaching package: 'dplyr'\n```\n:::\n\n::: {.cell-output .cell-output-stderr}\n```\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n```\n:::\n\n::: {.cell-output .cell-output-stderr}\n```\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n```\n:::\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\ndf <- df %>%\n  mutate(W_LecQuiz = df$`Lecture Quizzes total (Real)`/20) %>%\n  mutate(W_LeaAct = df$`Learning Activities total (Real)`/20) %>%\n  mutate(W_LabExe = df$`Lab Exercises total (Real)`/10) %>%\n  mutate(W_GrpAsgn = df$`Group Assignment total (Real)`/5) %>%\n  mutate(W_TWP = df$`Teamwork Process total (Real)`/20) %>%\n  mutate(W_LabRep = df$`Lab Report total (Real)`/4) %>%\n  mutate(W_FinExm = df$`Quiz: PSYC344 Final Exam (Real)`/2)\n```\n:::\n\n\nAdd weighted scores\n\n\n::: {.cell}\n\n```{.r .cell-code}\ndf <- df %>%\n  mutate(PSYC344FinSco = df$W_LecQuiz+df$W_LeaAct+df$W_LabExe+df$W_GrpAsgn+df$W_TWP+df$W_LabRep+df$W_FinExm)\n```\n:::\n\n\nAdd `grades` to `marks`.\n\n\n::: {.cell}\n\n```{.r .cell-code}\ndf <- df %>%\n  mutate(GPA = case_when(PSYC344FinSco < 50 ~ \"D\",\n                         PSYC344FinSco < 55 ~ \"C-\",\n                         PSYC344FinSco < 60 ~ \"C\",\n                         PSYC344FinSco < 65 ~ \"C+\",\n                         PSYC344FinSco < 70 ~ \"B-\",\n                         PSYC344FinSco < 75 ~ \"B\",\n                         PSYC344FinSco < 80 ~ \"B+\",\n                         PSYC344FinSco < 85 ~ \"A-\",\n                         PSYC344FinSco < 90 ~ \"A\",\n                         PSYC344FinSco < 100 ~ \"A+\"))\n```\n:::\n\n\nSave results to a new sheet.\n\n\n::: {.cell}\n\n```{.r .cell-code}\nwrite.csv(df, \"finalGradesProcessed.csv\")\n```\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
