@@ -2,6 +2,7 @@
 title: "Basices of Quarto documentation"
 author: "Usman Afzali"
 date: "2022-12-22"
+categories: [quarto, documentation]
 output: 
   html_document: 
     theme: cerulean
