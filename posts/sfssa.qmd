@@ -1,0 +1,12 @@
+---
+title: "Assessing New Zealand Tertiary Students' Financial Stress using Students' Financial Stress Scale Aotearoa"
+author: "Usman Afzali"
+date: "2023-03-11"
+categories: [stats, financial stress]
+---
+
+This project was completed in 2018 for my BSc Honours degree thesis. I tried to examine New Zealand Tertiary students' financial stress with respect to free education (fees-free), debt, subjective social students, and several financial and demographic variables using `Students' Financial Stress Scale - Aotearoa`.
+
+The Honours thesis provides a complete account of this work. A scientific paper communicating the most substantial findings has been [published](https://www.usmanafzali.com/publications/2779-perception-of-financial-satisfaction-and-its-implications-for-free-first-year-education-in-new-zealand-university-students) in New Zealand Journal of Psychology.
+
+This document provides full data analysis of the thesis. The raw data is not available due to confidentiality and privacy reasons.
