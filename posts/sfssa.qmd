@@ -10,3 +10,72 @@ This project was completed in 2018 for my BSc Honours degree thesis. I tried to 
 The Honours thesis provides a complete account of this work. A scientific paper communicating the most substantial findings has been [published](https://www.usmanafzali.com/publications/2779-perception-of-financial-satisfaction-and-its-implications-for-free-first-year-education-in-new-zealand-university-students) in New Zealand Journal of Psychology.
 
 This document provides full data analysis of the thesis. The raw data is not available due to confidentiality and privacy reasons.
+
+```{r}
+df <- readxl::read_xlsx("S1-200-300.xlsx")
+str(df)
+```
+
+```{r}
+df <- df[-c(1), ]
+df
+```
+
+
+```{r}
+library(dplyr)
+df <- df %>% select(`SFSS-A_1`, `SFSS-A_2`, `SFSS-A_3`, `SFSS-A_4`, `SFSS-A_5`, `SFSS-A_6`, `SFSS-A_7`, `SFSS-A_8`, `SFSS-A_9`, `SFSS-A_10`, `SFSS-A_11`, `SFSS-A_12`, `SFSS-A_13`, `SFSS-A_14`, `SFSS-A_15`, `SFSS-A_16`, `SFSS-A_17`, `SFSS-A_18`, `SFSS-A_19`, `SFSS-A_20`, `SFSS-A_21`, `SFSS-A_22`, `Scale`, `Age`, `Gender`, `Study`, `Fulltime`, `ETH`, `ETH_8_TEXT`, `EMPL`, `ALLOW`, `FIN-SUP`, `FIN-SUP_3_TEXT`, `DEBT`)
+df
+```
+
+
+```{r}
+library(tidyverse)
+df <- df %>%
+  mutate(`SFSS-A_1` = as.numeric(`SFSS-A_1`)) %>%
+  mutate(`SFSS-A_2` = as.numeric(`SFSS-A_2`)) %>%
+  mutate(`SFSS-A_3` = as.numeric(`SFSS-A_3`)) %>%
+  mutate(`SFSS-A_4` = as.numeric(`SFSS-A_4`)) %>%
+  mutate(`SFSS-A_5` = as.numeric(`SFSS-A_5`)) %>%
+  mutate(`SFSS-A_6` = as.numeric(`SFSS-A_6`)) %>%
+  mutate(`SFSS-A_7` = as.numeric(`SFSS-A_7`)) %>%
+  mutate(`SFSS-A_8` = as.numeric(`SFSS-A_8`)) %>%
+  mutate(`SFSS-A_9` = as.numeric(`SFSS-A_9`)) %>%
+  mutate(`SFSS-A_10` = as.numeric(`SFSS-A_10`)) %>%
+  mutate(`SFSS-A_11` = as.numeric(`SFSS-A_11`)) %>%
+  mutate(`SFSS-A_12` = as.numeric(`SFSS-A_12`)) %>%
+  mutate(`SFSS-A_13` = as.numeric(`SFSS-A_13`)) %>%
+  mutate(`SFSS-A_14` = as.numeric(`SFSS-A_14`)) %>%
+  mutate(`SFSS-A_15` = as.numeric(`SFSS-A_15`)) %>%
+  mutate(`SFSS-A_16` = as.numeric(`SFSS-A_16`)) %>%
+  mutate(`SFSS-A_17` = as.numeric(`SFSS-A_17`)) %>%
+  mutate(`SFSS-A_18` = as.numeric(`SFSS-A_18`)) %>%
+  mutate(`SFSS-A_19` = as.numeric(`SFSS-A_19`)) %>%
+  mutate(`SFSS-A_20` = as.numeric(`SFSS-A_20`)) %>%
+  mutate(`SFSS-A_21` = as.numeric(`SFSS-A_21`)) %>%
+  mutate(`SFSS-A_22` = as.numeric(`SFSS-A_22`)) %>%
+  mutate(`Scale` = as.numeric(`Scale`))
+
+str(df)
+```
+
+```{r}
+reverse_scores = c("SFSS-A_4", "SFSS-A_20")
+df [ , reverse_scores] = 8 - df [ , reverse_scores]
+```
+
+```{r}
+df$SFSS_A <- rowMeans(df[,c("SFSS-A_2", "SFSS-A_3", "SFSS-A_4", "SFSS-A_5", "SFSS-A_6", "SFSS-A_7", "SFSS-A_8", "SFSS-A_9", "SFSS-A_12", "SFSS-A_13", "SFSS-A_14", "SFSS-A_16", "SFSS-A_17", "SFSS-A_18", "SFSS-A_20", "SFSS-A_21", "SFSS-A_22")], na.rm = TRUE)
+psych::describe(df$SFSS_A)
+```
+
+## TBC
+
+
+
+
+
+
+
+
+
