@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Quarto with RStudio",
     "section": "",
-    "text": "Assessing New Zealand Tertiary Students’ Financial Stress using Students’ Financial Stress Scale-Aotearoa\n\n\n\n\n\n\n\nstats\n\n\nfinancial stress\n\n\n\n\n\n\n\n\n\n\n\nMar 11, 2023\n\n\nUsman Afzali\n\n\n\n\n\n\n  \n\n\n\n\nGit and GitHub with RStudio On Mac\n\n\n\n\n\n\n\nGit\n\n\nGitHub\n\n\n\n\n\n\n\n\n\n\n\nDec 20, 2022\n\n\nUsman Afzali\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nDec 19, 2022\n\n\nUsman Afzali\n\n\n\n\n\n\nNo matching items"
+    "text": "Grading\n\n\n\n\n\n\n\nstats\n\n\ngrading\n\n\n\n\n\n\n\n\n\n\n\nMar 11, 2023\n\n\nUsman Afzali\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAssessing New Zealand Tertiary Students’ Financial Stress using Students’ Financial Stress Scale-Aotearoa\n\n\n\n\n\n\n\nstats\n\n\nfinancial stress\n\n\n\n\n\n\n\n\n\n\n\nMar 11, 2023\n\n\nUsman Afzali\n\n\n\n\n\n\n  \n\n\n\n\nGit and GitHub with RStudio On Mac\n\n\n\n\n\n\n\nGit\n\n\nGitHub\n\n\n\n\n\n\n\n\n\n\n\nDec 20, 2022\n\n\nUsman Afzali\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nDec 19, 2022\n\n\nUsman Afzali\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/post-with-code/index.html",
@@ -89,5 +89,12 @@
     "title": "Assessing New Zealand Tertiary Students’ Financial Stress using Students’ Financial Stress Scale-Aotearoa",
     "section": "To be continued",
     "text": "To be continued"
+  },
+  {
+    "objectID": "posts/grading.html",
+    "href": "posts/grading.html",
+    "title": "Grading",
+    "section": "",
+    "text": "df <- readxl::read_xlsx(\"Grades.xlsx\")\n\nPick the needed columns only.\n\ndf <- df[,c(1,2,20,27,34,36,40,42,44,45)]\n\nApply weights\n\nlibrary(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\n\n\ndf <- df %>%\n  mutate(W_LecQuiz = df$`Lecture Quizzes total (Real)`/20) %>%\n  mutate(W_LeaAct = df$`Learning Activities total (Real)`/20) %>%\n  mutate(W_LabExe = df$`Lab Exercises total (Real)`/10) %>%\n  mutate(W_GrpAsgn = df$`Group Assignment total (Real)`/5) %>%\n  mutate(W_TWP = df$`Teamwork Process total (Real)`/20) %>%\n  mutate(W_LabRep = df$`Lab Report total (Real)`/4) %>%\n  mutate(W_FinExm = df$`Quiz: PSYC344 Final Exam (Real)`/2)\n\nAdd weighted scores\n\ndf <- df %>%\n  mutate(PSYC344FinSco = df$W_LecQuiz+df$W_LeaAct+df$W_LabExe+df$W_GrpAsgn+df$W_TWP+df$W_LabRep+df$W_FinExm)\n\nAdd grades to marks.\n\ndf <- df %>%\n  mutate(GPA = case_when(PSYC344FinSco < 50 ~ \"D\",\n                         PSYC344FinSco < 55 ~ \"C-\",\n                         PSYC344FinSco < 60 ~ \"C\",\n                         PSYC344FinSco < 65 ~ \"C+\",\n                         PSYC344FinSco < 70 ~ \"B-\",\n                         PSYC344FinSco < 75 ~ \"B\",\n                         PSYC344FinSco < 80 ~ \"B+\",\n                         PSYC344FinSco < 85 ~ \"A-\",\n                         PSYC344FinSco < 90 ~ \"A\",\n                         PSYC344FinSco < 100 ~ \"A+\"))\n\nSave results to a new sheet.\n\nwrite.csv(df, \"finalGradesProcessed.csv\")"
   }
 ]

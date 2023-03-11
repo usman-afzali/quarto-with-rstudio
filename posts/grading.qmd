@@ -1,0 +1,73 @@
+---
+title: "Grading"
+author: "Usman Afzali"
+date: "2023-03-11"
+categories: [stats, grading]
+---
+
+## Code for gradebook processing
+
+```{r}
+df <- readxl::read_xlsx("Grades.xlsx")
+```
+
+Pick the needed columns only.
+
+```{r}
+df <- df[,c(1,2,20,27,34,36,40,42,44,45)]
+```
+
+Apply weights
+
+```{r}
+library(dplyr)
+```
+
+
+```{r}
+df <- df %>%
+  mutate(W_LecQuiz = df$`Lecture Quizzes total (Real)`/20) %>%
+  mutate(W_LeaAct = df$`Learning Activities total (Real)`/20) %>%
+  mutate(W_LabExe = df$`Lab Exercises total (Real)`/10) %>%
+  mutate(W_GrpAsgn = df$`Group Assignment total (Real)`/5) %>%
+  mutate(W_TWP = df$`Teamwork Process total (Real)`/20) %>%
+  mutate(W_LabRep = df$`Lab Report total (Real)`/4) %>%
+  mutate(W_FinExm = df$`Quiz: PSYC344 Final Exam (Real)`/2)
+```
+
+Add weighted scores
+
+```{r}
+df <- df %>%
+  mutate(PSYC344FinSco = df$W_LecQuiz+df$W_LeaAct+df$W_LabExe+df$W_GrpAsgn+df$W_TWP+df$W_LabRep+df$W_FinExm)
+```
+
+Add `grades` to `marks`.
+
+```{r}
+df <- df %>%
+  mutate(GPA = case_when(PSYC344FinSco < 50 ~ "D",
+                         PSYC344FinSco < 55 ~ "C-",
+                         PSYC344FinSco < 60 ~ "C",
+                         PSYC344FinSco < 65 ~ "C+",
+                         PSYC344FinSco < 70 ~ "B-",
+                         PSYC344FinSco < 75 ~ "B",
+                         PSYC344FinSco < 80 ~ "B+",
+                         PSYC344FinSco < 85 ~ "A-",
+                         PSYC344FinSco < 90 ~ "A",
+                         PSYC344FinSco < 100 ~ "A+"))
+```
+
+Save results to a new sheet.
+
+```{r}
+write.csv(df, "finalGradesProcessed.csv")
+```
+
+
+
+
+
+
+
+
