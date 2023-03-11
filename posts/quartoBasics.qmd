@@ -71,7 +71,7 @@ image(volcano, col = viridis(200, option = "A"))
 
 # References
 
-1.  [Git and GitHub with RStudio On Mac - 2022](https://github.com/usman-afzali/Git-GitHub-Mac-2022)
+1.  [Git and GitHub with RStudio On Mac - 2022](https://usman-afzali.github.io/quarto-with-rstudio/posts/git/git.html)
 
 2.  [R Markdown TUTORIAL \| A powerful tool for LEARNING R (IN 45 MINUTES)](https://youtu.be/K418swtFnik)
 
