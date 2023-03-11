@@ -1,5 +1,5 @@
 ---
-title: "Assessing New Zealand Tertiary Students' Financial Stress using Students' Financial Stress Scale Aotearoa"
+title: "Assessing New Zealand Tertiary Students' Financial Stress using Students' Financial Stress Scale-Aotearoa"
 author: "Usman Afzali"
 date: "2023-03-11"
 categories: [stats, financial stress]
