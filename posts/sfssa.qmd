@@ -69,7 +69,7 @@ df$SFSS_A <- rowMeans(df[,c("SFSS-A_2", "SFSS-A_3", "SFSS-A_4", "SFSS-A_5", "SFS
 psych::describe(df$SFSS_A)
 ```
 
-## TBC
+## To be continued
 
 
 
